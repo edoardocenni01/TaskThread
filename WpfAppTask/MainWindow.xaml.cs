@@ -70,6 +70,22 @@ namespace WpfAppTask
             lbl.Content = "Sto aspettando... !";
         }
 
+        private void btnStop1_Click(object sender, RoutedEventArgs e)
+        {
+            if (token != null)
+            {
+                token.Cancel();
+                token = null;
 
+            }
+        }
+
+        private void btnStart2_Click(object sender, RoutedEventArgs e)
+        {
+            int max = Convert.ToInt32(txtText.Text);
+            if (token == null)
+                token = new CancellationTokenSource();
+            Task.Factory.StartNew(() => Conteggio(token, max, lblRis2));
+        }
     }
 }
